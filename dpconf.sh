@@ -9,11 +9,13 @@ done
 echo "Scanning directory: $path";
 echo "Filename: $filename";
 
-for url in filename:
+for url in $(cat $filename):
 do
 domain_name=$(echo "$url" | sed -e 's|^[^/]*//||' -e 's|/.*$||')
-mkdir all_packages/$domain_name
-wget url -P $(pwd)/all_packages/$domain_name $url
+mkdir $path/$domain_name
+wget url -P $(pwd)/$path/$domain_name $url > out.log 2> /dev/null
 done
 
-./Dustilock -p ./All-Packages/ -r
+
+echo "Starting Dustilock analysis"
+./Dustilock -p ./$path/ -r
