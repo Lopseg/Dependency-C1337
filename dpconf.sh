@@ -8,6 +8,7 @@ do
 done
 echo "Scanning directory: $path";
 echo "Filename: $filename";
+echo "$(wc -l $filename) URLS"
 
 for url in $(cat $filename):
 do
