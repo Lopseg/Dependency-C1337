@@ -14,9 +14,9 @@ mkdir all_packages
 #Download de cada package.json utilizando o fff
 cat $inputfile | ./fff -o ./all_packages -s 200
 
-for target in $(ls -la ./all_packages/ | grep -v ' .'$ | grep -v ' ..'$)
+for target in $(ls ./all_packages/ )
 do
-for file in $(ls -la ./all_packages/$target/ | grep -v ' .'$ | grep -v ' ..'$)
+for file in $(ls ./all_packages/$target/ )
 do
 
 mv ./all_packages/$target/$file/*.body ../
