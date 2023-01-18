@@ -9,7 +9,7 @@ echo "Filename: $inputfile";
 echo "$(wc -l $inputfile) URLS"
 
 #Download de cada package.json utilizando o fff
-cat hosts-targets.txt | .fff -o ./all_packages -s 200
+cat $inputfile | ./fff -o ./all_packages -s 200
 
 for target in $(ls -la ./all_packages/*)
 do
@@ -26,4 +26,4 @@ done
 
 #Start package.json validation
 echo "Starting Dustilock analysis"
-./Dustilock -p ./all_packages -r
+#./Dustilock -p ./all_packages -r
