@@ -12,20 +12,24 @@ mkdir all_packages
 
 
 #Download de cada package.json utilizando o fff
-cat $inputfile | ./fff -o ./all_packages -s 200
+cat $inputfile | fff -o ./all_packages -s 200
 
 for target in $(ls ./all_packages/ )
 do
 for file in $(ls ./all_packages/$target/ )
 do
 
-mv ./all_packages/$target/$file/*.body ../
-rm -r ./all_packages/$target/$file
-mv ./all_packages/$target/*.body ../
+rm -r ./all_packages/$target/$file/*.headers
+mv ./all_packages/$target/$file/*.body ../dustilock/all_packages/$target/
+rm -rf ./all_packages/$target/package.json
+rm -rf ./all_packages/$target/package-lock.json
+mv ./all_packages/$target/*.body ./all_packages/$target/package.json
+
 
 done
 done
 
 #Start package.json validation
 echo "Starting Dustilock analysis"
-#./Dustilock -p ./all_packages -r
+./dustilock -p ./all_packages -r
+rm -rf ./all_packages/
